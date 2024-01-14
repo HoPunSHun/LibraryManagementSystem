@@ -8,7 +8,27 @@ public:
 
    Book() = default;
 
-   Book(std::string &&title, std::string &&author, std::string &&illustrator, std::string &&publisher, int pages);
+   Book(const std::string &title, const std::string &author, const std::string &illustrator, const std::string &publisher, int pages);
+
+   [[nodiscard]] const std::string &GetTitle() const;
+
+   [[nodiscard]] const std::string &GetAuthor() const;
+
+   [[nodiscard]] const std::string &GetIllustrator() const ;
+
+   [[nodiscard]] const std::string &GetPublisher() const;
+
+   [[nodiscard]] int GetPages() const;
+
+   void SetTitle(const std::string &newTitle);
+
+   void SetAuthor(const std::string &newAuthor);
+
+   void SetIllustrator(const std::string &newIllustrator);
+
+   void SetPublisher(const std::string &newPublisher);
+
+   Book& operator=(const Book &other);
 
 private:
 
