@@ -42,4 +42,6 @@ Book& Book::operator=(const Book &other)
 
     m_pages = other.GetPages();
 
+    return *this;
+
 }
