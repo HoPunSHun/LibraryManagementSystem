@@ -8,7 +8,8 @@ public:
 
    Book() = default;
 
-   Book(const std::string &title, const std::string &author, const std::string &illustrator, const std::string &publisher, int pages);
+   Book(const std::string &title, const std::string &author, int pages);
+   Book(const std::string &title, const std::string &author, int pages, const std::string &illustrator, const std::string &publisher);
 
    [[nodiscard]] const std::string &GetTitle() const;
 

@@ -1,6 +1,12 @@
 #include "Book.h"
 
-Book::Book(const std::string &title, const std::string &author, const std::string &illustrator, const std::string &publisher, int pages)
+Book::Book(const std::string &title, const std::string &author, int pages)
+    :   m_title        (title),
+        m_author       (author),
+        m_pages        (pages)
+{}
+
+Book::Book(const std::string &title, const std::string &author, int pages, const std::string &illustrator, const std::string &publisher)
     :   m_title        (title),
         m_author       (author),
         m_illustrator  (illustrator),
