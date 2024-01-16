@@ -1,46 +1,67 @@
 #include "Book.h"
 
-Book::Book(const std::string &title, const std::string &author, int pages)
-    :   m_title        (title),
-        m_author       (author),
-        m_pages        (pages)
-{}
+#include <utility>
 
-Book::Book(const std::string &title, const std::string &author, int pages, const std::string &illustrator, const std::string &publisher)
-    :   m_title        (title),
-        m_author       (author),
-        m_illustrator  (illustrator),
-        m_publisher    (publisher),
-        m_pages        (pages)
-{}
-
-const std::string &Book::GetTitle() const { return m_title; }
-
-const std::string &Book::GetAuthor() const { return m_author; }
-
-const std::string &Book::GetIllustrator() const { return m_illustrator; }
-
-const std::string &Book::GetPublisher() const { return m_publisher; }
-
-int Book::GetPages() const { return m_pages; }
-
-void Book::SetTitle(const std::string &newTitle) { m_title = newTitle; }
-
-void Book::SetAuthor(const std::string &newAuthor) { m_author = newAuthor; }
-
-void Book::SetIllustrator(const std::string &newIllustrator) { m_illustrator = newIllustrator; }
-
-void Book::SetPublisher(const std::string &newPublisher) { m_publisher = newPublisher; }
-
-Book& Book::operator=(const Book &other)
+void Book::AddData(const std::string &dataName, const std::string &data)
 {
 
-    m_title = other.GetTitle();
-    m_author = other.GetAuthor();
-    m_illustrator = other.GetIllustrator();
-    m_publisher = other.GetPublisher();
+    m_data[dataName] = data;
 
-    m_pages = other.GetPages();
+}
+
+bool Book::DataExist(const std::string &dataName) const
+{
+
+    if (m_data.find(dataName) != m_data.end())
+    {
+
+        return true;
+
+    }
+
+    return false;
+
+}
+
+std::string Book::GetData(const std::string &dataName) const
+{
+
+    if (DataExist(dataName))
+    {
+       
+        return m_data[dataName];
+        
+    }
+
+    return "Data not found";
+
+}
+
+std::map<std::string, std::string> &&Book::GetData() const
+{
+
+    return std::move(m_data);
+
+}
+
+void Book::RemoveData(const std::string &dataName)
+{
+
+    m_data.erase(dataName);
+
+}
+
+void Book::RemoveData()
+{
+
+    m_data.clear();
+
+}
+
+Book &Book::operator=(const Book &other)
+{
+
+    m_data = other.GetData();
 
     return *this;
 
