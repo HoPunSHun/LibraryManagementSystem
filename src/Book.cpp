@@ -33,7 +33,7 @@ std::string Book::GetData(const std::string &dataName) const
         
     }
 
-    return "Data not found";
+    return dataName + " doesn't exist";
 
 }
 
@@ -62,6 +62,15 @@ Book &Book::operator=(const Book &other)
 {
 
     m_data = other.GetData();
+
+    return *this;
+
+}
+
+Book &Book::operator=(const std::map<std::string, std::string> &data)
+{
+
+    m_data = data;
 
     return *this;
 

@@ -21,9 +21,12 @@ public:
    void RemoveData();
 
    Book &operator=(const Book &other);
+   Book &operator=(const std::map<std::string, std::string> &data);
 
 private:
 
     mutable std::map<std::string, std::string> m_data;
+
+    std::string m_test;
 
 };
