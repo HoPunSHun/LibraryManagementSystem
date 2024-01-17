@@ -96,7 +96,7 @@ std::string BookDir::ReadTillDataStop(std::istringstream &ss)
     while (ss >> tmp)
     {
 
-        if (tmp == "|") { break; }
+        if (tmp == m_dataStop) { break; }
 
         data += ' ' + tmp;
 
