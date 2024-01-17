@@ -12,7 +12,20 @@ public:
 
     BookDir() = default;
 
+    explicit BookDir(const std::string &dirName, const std::string &fatherDir);
+
 private:
+
+    void ReadDirData();
+
+    void ReadBookInfo(const std::string &filePath);
+
+    void AddBookToDir(const std::string &bookTitle);
+
+private:
+
+    std::string m_name;
+    std::string m_fatherDir;
 
     std::map<std::string, BookDir> m_childDir;
 
