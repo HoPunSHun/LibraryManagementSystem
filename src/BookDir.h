@@ -20,8 +20,6 @@ private:
 
     void ReadBookInfo(const std::string &filePath);
 
-    std::string ReadTillDataStop(std::istringstream &ss);
-
     void AddBookToDir(const std::string &bookTitle);
 
 private:

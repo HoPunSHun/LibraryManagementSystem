@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 
+#include "Tool.h"
+
 BookDir::BookDir(const std::string &dirName, const std::string &path, const std::string &dataStop)
     :   m_name      (dirName),
         m_path      (path),
@@ -63,13 +65,13 @@ void BookDir::ReadBookInfo(const std::string &filePath)
             std::istringstream ss;
             ss.str(line);
 
-            std::string bookTitle = ReadTillDataStop(ss);
+            std::string bookTitle = ReadTill(ss, m_dataStop);
             data["Title"] = bookTitle;
 
             while (ss >> dataName)
             {
 
-                std::string value = ReadTillDataStop(ss);
+                std::string value = ReadTill(ss, m_dataStop);
 
                 data[dataName] = value;
 
@@ -82,25 +84,6 @@ void BookDir::ReadBookInfo(const std::string &filePath)
     }
 
     file.close();
-
-}
-
-std::string BookDir::ReadTillDataStop(std::istringstream &ss)
-{
-
-    std::string data;
-    std::string tmp;
-
-    while (ss >> tmp)
-    {
-
-        if (tmp == m_dataStop) { break; }
-
-        data += ' ' + tmp;
-
-    }
-
-    return data;
 
 }
 
