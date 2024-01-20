@@ -4,9 +4,9 @@
 #include <fstream>
 #include <sstream>
 
-BookDir::BookDir(const std::string &dirName, const std::string &fatherDir, const std::string &dataStop)
+BookDir::BookDir(const std::string &dirName, const std::string &path, const std::string &dataStop)
     :   m_name      (dirName),
-        m_fatherDir (fatherDir),
+        m_path      (path),
         m_dataStop  (dataStop)
 {
 
@@ -19,9 +19,7 @@ void BookDir::ReadDirData()
 
     namespace fs = std::filesystem;
 
-    std::string currentPath = fs::current_path().string() + '/' + m_fatherDir + '/' + m_name;
-
-    for (const auto &file : fs::directory_iterator(currentPath))
+    for (const auto &file : fs::directory_iterator(m_path))
     {
 
         const fs::path& filePath = file.path();
@@ -29,9 +27,9 @@ void BookDir::ReadDirData()
         if (fs::is_directory(filePath))
         {
 
-            std::string dirName = filePath.string().erase(0, currentPath.length() + 1);
+            std::string dirName = filePath.string().erase(0, m_path.length() + 1);
 
-            m_childDir[dirName] = BookDir(dirName, m_fatherDir + '/' + m_name, m_dataStop);
+            m_childDir[dirName] = BookDir(dirName, filePath.string(), m_dataStop);
 
         }
         else

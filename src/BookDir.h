@@ -12,7 +12,7 @@ public:
 
     BookDir() = default;
 
-    explicit BookDir(const std::string &dirName, const std::string &fatherDir, const std::string &dataStop);
+    BookDir(const std::string &dirName, const std::string &path, const std::string &dataStop);
 
 private:
 
@@ -27,7 +27,7 @@ private:
 private:
 
     std::string m_name;
-    std::string m_fatherDir;
+    std::string m_path;
 
     std::string m_dataStop;
 
