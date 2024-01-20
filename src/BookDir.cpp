@@ -29,7 +29,7 @@ void BookDir::ReadDirData()
         if (fs::is_directory(filePath))
         {
 
-            std::string dirName = filePath.string().erase(0, currentPath.length());
+            std::string dirName = filePath.string().erase(0, currentPath.length() + 1);
 
             m_childDir[dirName] = BookDir(dirName, m_fatherDir + '/' + m_name, m_dataStop);
 
@@ -48,7 +48,8 @@ void BookDir::ReadDirData()
 void BookDir::ReadBookInfo(const std::string &filePath)
 {
 
-    std::fstream file(filePath);
+    std::fstream file;
+    file.open(filePath, std::ios::in);
 
     if (file.is_open())
     {
@@ -62,7 +63,6 @@ void BookDir::ReadBookInfo(const std::string &filePath)
             std::map<std::string, std::string> data;
 
             std::istringstream ss;
-            std::getline(file, line);
             ss.str(line);
 
             std::string bookTitle = ReadTillDataStop(ss);
