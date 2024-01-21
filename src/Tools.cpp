@@ -1,7 +1,4 @@
-#pragma once
-
-#include <string>
-#include <sstream>
+#include "Tools.h"
 
 std::string ReadTill(std::istringstream &ss, const std::string &stopper)
 {

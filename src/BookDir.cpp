@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "Tool.h"
+#include "Tools.h"
 
 BookDir::BookDir(const std::string &dirName, const std::string &path, const std::string &dataStop)
     :   m_name      (dirName),
